@@ -1,3 +1,4 @@
+// Imitial setup
 var default_url = "/names";
 var $select = Plotly.d3.select('#selDataset');
 Plotly.d3.json(default_url, (error, data) => {
@@ -15,6 +16,7 @@ Plotly.d3.json(default_url, (error, data) => {
     gaugechart(data[0]);
 });
 
+// function for option Changed
 function optionChanged(value){
   sampleMetaData(value);
   pieChart(value);
@@ -23,7 +25,7 @@ function optionChanged(value){
 }
 
 
-
+// SampleMetadata value to be displayed
 function sampleMetaData(value){
   url = "/metadata/";
   Plotly.d3.json(url + value, (error, data) => {
@@ -41,6 +43,7 @@ function sampleMetaData(value){
 
 }
 
+//creating piechart
 function pieChart(value){
   url = "/samples/";
   Plotly.d3.json(url + value, (error, data) => {
@@ -66,6 +69,7 @@ function pieChart(value){
       });
 }
 
+//creating bubble chart
 function bubbleChart(value){
   url = "/samples/";
   Plotly.d3.json(url + value, (error, data) => {
@@ -90,6 +94,7 @@ function bubbleChart(value){
       });
 }
 
+// creating gaugechart
 function gaugechart(value){
   var level = 175
   var degrees = 180 - level,
@@ -146,8 +151,4 @@ var layout = {
 };
 
 Plotly.newPlot('gauge', data, layout);
-
-
-
-
 }
